@@ -3,10 +3,8 @@ import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-import LoginScreen from '../screens/LoginScreen';
-import RegisterScreen from '../screens/RegisterScreen';
-import FeedbackForm from '../screens/FeedbackForm';
-import FeedbackList from '../screens/FeedbackList';
+import LoginScreen from './../screens/LoginScreen';
+import RegisterScreen from './../screens/RegisterScreen';
 
 export type RootStackParamList = {
   Login: undefined;
@@ -26,8 +24,6 @@ export default function AppNavigator() {
       >
         <Stack.Screen name="Login" component={LoginScreen} />
         <Stack.Screen name="Register" component={RegisterScreen} />
-        <Stack.Screen name="Form" component={FeedbackForm} />
-        <Stack.Screen name="List" component={FeedbackList} />
       </Stack.Navigator>
     </NavigationContainer>
   );
