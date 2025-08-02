@@ -1,21 +1,32 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+// App.tsx
+import React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
 import AppNavigator from './navigation/stack';
+import { AuthProvider } from './contexts/AuthContext';
+import Toast from 'react-native-toast-message';
+import { useFonts, Inter_600SemiBold, Inter_400Regular } from '@expo-google-fonts/inter';
+import { View, ActivityIndicator } from 'react-native';
 
 export default function App() {
+  const [fontsLoaded] = useFonts({
+    Inter_600SemiBold,
+    Inter_400Regular,
+  });
+
+  if (!fontsLoaded) {
+    return (
+      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+        <ActivityIndicator size="large" color="#324FBE" />
+      </View>
+    );
+  }
+
   return (
-    <>
-      <AppNavigator/>
-      <StatusBar style="auto" />
-    </>
+    <AuthProvider>
+      <NavigationContainer>
+        <AppNavigator />
+        <Toast />
+      </NavigationContainer>
+    </AuthProvider>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
